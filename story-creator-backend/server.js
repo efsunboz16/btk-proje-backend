@@ -3,7 +3,7 @@ const app = require('./app');
 const logger = require('./utils/logger');
 
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || 'localhost';
+
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
@@ -28,8 +28,8 @@ process.on('uncaughtException', (err) => {
     process.exit(1);
 });
 
-app.listen(PORT, HOST, () => {
-    logger.info(`🚀 Story Creator Backend running on http://${HOST}:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    logger.info(`🚀 Story Creator Backend running on http://0.0.0.0:${PORT}`);
     logger.info(`📝 Environment: ${process.env.NODE_ENV}`);
     logger.info(`🤖 Gemini AI: ${process.env.GEMINI_API_KEY ? 'Connected' : 'Not configured'}`);
 });
