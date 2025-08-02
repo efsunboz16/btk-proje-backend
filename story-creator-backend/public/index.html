@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Creator API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .endpoints {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .endpoint {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .method {
+            color: #4ECDC4;
+            font-weight: bold;
+        }
+        
+        .url {
+            color: #FFD93D;
+        }
+        
+        .description {
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #4CAF50;
+            color: white;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: left;
+        }
+        
+        .feature h3 {
+            color: #FFD93D;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Story Creator API</h1>
+        <p class="subtitle">AI-Powered Children's Story Generator</p>
+        
+        <div class="status">✅ Service Running</div>
+        
+        <div class="endpoints">
+            <h2>📡 API Endpoints</h2>
+            
+            <div class="endpoint">
+                <div><span class="method">GET</span> <span class="url">/api/stories/categories</span></div>
+                <div class="description">Hikaye kategorilerini getirir</div>
+            </div>
+            
+            <div class="endpoint">
+                <div><span class="method">GET</span> <span class="url">/api/stories/questions/:categoryId</span></div>
+                <div class="description">Seçilen kategoriye özel soruları getirir</div>
+            </div>
+            
+            <div class="endpoint">
+                <div><span class="method">POST</span> <span class="url">/api/stories/create</span></div>
+                <div class="description">Cevaplara göre hikaye oluşturur</div>
+            </div>
+            
+            <div class="endpoint">
+                <div><span class="method">GET</span> <span class="url">/api/stories/health</span></div>
+                <div class="description">Gemini AI servis durumunu kontrol eder</div>
+            </div>
+            
+            <div class="endpoint">
+                <div><span class="method">GET</span> <span class="url">/api/stories/stats</span></div>
+                <div class="description">Sistem istatistiklerini getirir</div>
+            </div>
+            
+            <div class="endpoint">
+                <div><span class="method">GET</span> <span class="url">/health</span></div>
+                <div class="description">Genel sistem durumu</div>
+            </div>
+        </div>
+        
+        <div class="endpoints">
+            <h2>🚀 Features</h2>
+            
+            <div class="feature">
+                <h3>🤖 AI-Powered</h3>
+                <p>Google Gemini AI ile dinamik kategori ve soru üretimi</p>
+            </div>
+            
+            <div class="feature">
+                <h3>⚡ Intelligent Caching</h3>
+                <p>Performans için akıllı önbellek sistemi</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🛡️ Security & Rate Limiting</h3>
+                <p>CORS, Helmet ve rate limiting ile güvenlik</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📝 Comprehensive Logging</h3>
+                <p>Detaylı loglama ve error handling</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🔄 Fallback System</h3>
+                <p>AI servisi çalışmadığında yerleşik içerik</p>
+            </div>
+        </div>
+        
+        <div class="tech-stack">
+            <div class="tech-item">Node.js</div>
+            <div class="tech-item">Express.js</div>
+            <div class="tech-item">Google Gemini AI</div>
+            <div class="tech-item">CORS</div>
+            <div class="tech-item">Helmet</div>
+            <div class="tech-item">Rate Limiting</div>
+        </div>
+        
+        <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+            🔧 Ready to create amazing stories for children!
+        </p>
+    </div>
+    
+    <script>
+        // Simple status check
+        fetch('/health')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Service Status:', data);
+            })
+            .catch(error => {
+                console.error('Service check failed:', error);
+                document.querySelector('.status').innerHTML = '❌ Service Error';
+                document.querySelector('.status').style.background = '#f44336';
+            });
+    </script>
+</body>
+</html>
