@@ -19,16 +19,23 @@ class QuestionService {
                 .replace(/```/g, '')
                 .trim();
 
-            // JSON tamamlanmamışsa, son geçerli köşeli paranteze kadar kırp
-            const lastBrace = clean.lastIndexOf('}');
-            if (lastBrace !== -1) {
-                clean = clean.substring(0, lastBrace + 1);
-            }
-
+            // Sadece ilk { ile son } arasını al
             const jsonMatch = clean.match(/\{[\s\S]*\}/);
             if (jsonMatch) {
-                return JSON.parse(jsonMatch[0]);
+                clean = jsonMatch[0];
             }
+
+            // JSON tamamlanmamışsa, son geçerli } veya ]'ye kadar kırp
+            let lastBrace = clean.lastIndexOf('}');
+            let lastBracket = clean.lastIndexOf(']');
+            let cutIndex = Math.max(lastBrace, lastBracket);
+            if (cutIndex !== -1 && cutIndex !== clean.length - 1) {
+                clean = clean.substring(0, cutIndex + 1);
+            }
+
+            // Sonunda virgül varsa sil
+            clean = clean.replace(/,\s*}$/, '}').replace(/,\s*]$/, ']');
+
             return JSON.parse(clean);
         } catch (error) {
             logger.warn('Could not extract JSON from response:', error.message);
@@ -65,7 +72,7 @@ Kesinlikle sadece JSON formatında döndür, başka açıklama ekleme:
 }
 
 Kurallar:
-- En az 8 kategori oluştur
+- 8 adet kategori oluştur
 - Her kategori benzersiz ve çekici olsun
 - Türkçe isimler kullan
 - Renkler hex formatında olsun
@@ -151,7 +158,8 @@ Kesinlikle sadece JSON formatında döndür:
 Kurallar:
 - 5 adet soru oluştur
 - Sorular basit ve daha genel olmalı
-- Soru tipleri: "text", "select", "textarea", "number"
+- Soru tipleri: "select", "textarea"
+- Textarea sorusu sadece en başta ve kahramının adını soracak
 - Her soru ${categoryName} temasına uygun olsun
 - Select sorularında 4 seçenek olsun
 - Yaş grubu: 8-12 yaş
@@ -200,9 +208,9 @@ Kurallar:
         }
     }
 
-    async generateStory(categoryId, answers, categoryName = '') {
+    async generateStory(categoryId, answers, categoryName) {
         const answersText = Object.entries(answers)
-            .map(([key, value]) => `${key}: ${value}`)
+            .map(([key, value]) => `${value}`)
             .join('\n');
 
         const prompt = `Verilen cevapları kullanarak çocuklar için bir hikaye yaz.
@@ -212,15 +220,25 @@ Hikaye Öğeleri:
 ${answersText}
 
 Hikaye Kuralları:
-- 8-12 yaş çocuklara uygun
-- 400-600 kelime arası
-- Eğitici ve öğretici mesaj içersin
-- Pozitif ve umut verici son
-- Türkçe yaz
-- Paragraflar halinde düzenle
+-Tarih: ${new Date().toISOString()}
+-Aşağıdaki kategori ve cevaplara göre 8-12 yaş arası çocuklar için, her biri en fazla 3 cümlelik 10 sayfalık tamamen yeni ve özgün bir hikaye yaz.
+- Her istekte, daha önce yazdıklarından tamamen farklı, yaratıcı ve şaşırtıcı bir hikaye üret.
+- Aynı hikayeyi asla tekrar etme. Hikaye özgün karakterler, olaylar ve mekanlar içersin.
+- Toplam 300 kelime kullan 
+- Objectin içinde 
+  {
+    "page-1": "Hikaye metni",
+    "page-2": "Hikaye metni"
+  } şeklinde döndür
 - Verilen öğeleri mutlaka kullan
 - Yaratıcı ve ilgi çekici olsun
 - Çocuğun hayal gücünü beslesin
+- Daha önce yazdığın hikayelerden farklı, yeni bir hikaye oluştur.
+
+Hikaye Öğeleri:
+${answersText}
+
+Kategori: ${categoryName || categoryId}
 
 Sadece hikayeyi yaz, başka açıklama ekleme.`;
 
