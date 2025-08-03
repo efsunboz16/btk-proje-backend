@@ -3,7 +3,7 @@ const logger = require('../utils/logger');
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
     ? process.env.ALLOWED_ORIGINS.split(',')
-    : ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://127.0.0.1:5500'];
+    : ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://127.0.0.1:5500', 'https://can-ozyasar.github.io'];
 
 const corsOptions = {
     origin: (origin, callback) => {
