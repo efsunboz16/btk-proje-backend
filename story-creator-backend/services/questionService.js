@@ -72,7 +72,7 @@ Kesinlikle sadece JSON formatında döndür, başka açıklama ekleme:
 }
 
 Kurallar:
-- 8 adet kategori oluştur
+- 6 adet kategori oluştur
 - Her kategori benzersiz ve çekici olsun
 - Türkçe isimler kullan
 - Renkler hex formatında olsun
