@@ -239,6 +239,7 @@ Hikaye Kuralları:
 - Her istekte, daha önce yazdıklarından tamamen farklı, yaratıcı ve şaşırtıcı bir hikaye üret.
 - Aynı hikayeyi asla tekrar etme. Hikaye özgün karakterler, olaylar ve mekanlar içersin.
 - 3'er cümlelik 10 sayfa yaz.
+- En az 300 kelime olsun.
 - Verilen öğeleri mutlaka kullan.
 - Yaratıcı ve ilgi çekici olsun.
 - Çocuğun hayal gücünü beslesin.
