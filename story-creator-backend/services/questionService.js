@@ -238,7 +238,7 @@ Hikaye Kuralları:
 -Aşağıdaki kategori ve cevaplara göre 8-12 yaş arası çocuklar için, her biri en fazla 3 cümlelik 10 sayfalık tamamen yeni ve özgün bir hikaye yaz.
 - Her istekte, daha önce yazdıklarından tamamen farklı, yaratıcı ve şaşırtıcı bir hikaye üret.
 - Aynı hikayeyi asla tekrar etme. Hikaye özgün karakterler, olaylar ve mekanlar içersin.
-- Toplam 300 kelime kullan 
+- en az 300 kelime ve en fazla 500 kelime kullan 
 - Verilen öğeleri mutlaka kullan
 - Yaratıcı ve ilgi çekici olsun
 - Çocuğun hayal gücünü beslesin
