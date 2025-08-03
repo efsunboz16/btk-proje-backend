@@ -209,9 +209,23 @@ Kurallar:
     }
 
     async generateStory(categoryId, answers, categoryName) {
-        const answersText = Object.entries(answers)
-            .map(([key, value]) => `${value}`)
-            .join('\n');
+        // Eğer answers bir dizi ise, anahtar-değer ilişkisi yoktur, sadece stringleri birleştir
+        let answersText;
+        if (Array.isArray(answers)) {
+            answersText = answers.join(', ');
+        } else if (typeof answers === 'object' && answers !== null) {
+            // Anahtar-değer ilişkisi varsa
+            answersText = Object.entries(answers)
+                .map(([key, value]) => {
+                    if (Array.isArray(value)) {
+                        return `${key}: ${value.join(', ')}`;
+                    }
+                    return `${key}: ${value}`;
+                })
+                .join('\n');
+        } else {
+            answersText = String(answers);
+        }
 
         const prompt = `Verilen cevapları kullanarak çocuklar için bir hikaye yaz.
 
@@ -225,11 +239,6 @@ Hikaye Kuralları:
 - Her istekte, daha önce yazdıklarından tamamen farklı, yaratıcı ve şaşırtıcı bir hikaye üret.
 - Aynı hikayeyi asla tekrar etme. Hikaye özgün karakterler, olaylar ve mekanlar içersin.
 - Toplam 300 kelime kullan 
-- Objectin içinde 
-  {
-    "page-1": "Hikaye metni",
-    "page-2": "Hikaye metni"
-  } şeklinde döndür
 - Verilen öğeleri mutlaka kullan
 - Yaratıcı ve ilgi çekici olsun
 - Çocuğun hayal gücünü beslesin
